@@ -5,13 +5,48 @@ extras que le diferencian de los demás.
 */
 
 //Incluimos el archivo.h
-#include "Agenda.h"
+#ifndef AGENDA_CPP
+#define AGENDA_CPP
 
 //Librerias necesarias para esta clase
 #include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
+
+//Clases que se van a incluir
+#include "Task.cpp"
+#include "Event.cpp"  
+#include "Date.cpp"
+
+//Definición de la clase
+class Agenda {
+    private:
+        vector<Task> task; //vector de tasks
+        vector<Event> event; //vector de events
+    public:
+        //Constructores
+        Agenda();
+        Agenda(vector<Task>, vector<Event>);
+        Agenda(vector<Task>);
+        Agenda(vector<Event>);
+        //Getters
+        vector<Task> getTask();
+        vector<Event> getEvent();
+        //Setters
+        void setTask(vector<Task>);
+        void setEvent(vector<Event>);
+        //Métodos adicionales
+        int lenTask();
+        int lenEvent();
+        void addTask(Task);
+        void addEvent(Event);
+        void deleteTask(int);
+        void deleteEvent(int);
+        string printInformation();
+        Task getTaskPosition(int);
+        Event getEventPosition(int);
+};
 
 //Constructores
 Agenda::Agenda(){}
@@ -90,3 +125,5 @@ Task Agenda::getTaskPosition(int position){
 Event Agenda::getEventPosition(int position){
     return event[position];
 }
+
+#endif
