@@ -1,10 +1,16 @@
 /*
-La clase Teacher, representa a un tipo de la clase Persona, de la misma manera,
-que la clase de tipo Student, estamos representando herencia. Tiene tres atributos
-extras que le diferencian de los demás.
+*
+*
+* Agenda project
+* Benjamín Iván Arauz Córdova
+* 10/06/2023
+* La clase Agenda es un objeto que se utiliza para organizar eventos y tareas en un determinado periodo de tiempo. Esta
+* clase es útil para administrar el tiempo de manera y eficiente. Se va a componer de objetos tipo Task y Event, esta
+* clase se puede considerar como la clase principal. Se va a componer de listas de objetos tipo Task y Event representarán 
+* las tareas y eventos que se agregarán a la agenda.
 */
 
-//Incluimos el archivo.h
+
 #ifndef AGENDA_CPP
 #define AGENDA_CPP
 
@@ -27,8 +33,10 @@ class Agenda {
     public:
         //Constructores
         Agenda();
-        Agenda(vector<Task>, vector<Event>);
+        //Declaramos sobreeescritura con los constructores
+        //Constructor con un vector tipo task
         Agenda(vector<Task>);
+
         Agenda(vector<Event>);
         //Getters
         vector<Task> getTask();
@@ -37,23 +45,19 @@ class Agenda {
         void setTask(vector<Task>);
         void setEvent(vector<Event>);
         //Métodos adicionales
-        int lenTask();
-        int lenEvent();
-        void addTask(Task);
-        void addEvent(Event);
-        void deleteTask(int);
-        void deleteEvent(int);
-        string printInformation();
-        Task getTaskPosition(int);
-        Event getEventPosition(int);
+        int lenTask(); //Devuelve el tamaño del vector de tipo Task
+        int lenEvent(); //Devuelve el tamaño del vector de tipo Event
+        void addTask(Task); //Agrega objetos de tipo Task al vector Task
+        void addEvent(Event); //Agrega objetos de tipo Event al vector Event
+        void deleteTask(int); //Elimina un objeto de tipo Task del vector Task
+        void deleteEvent(int); //Elimina un objeto de tipo Event del vector Event
+        string printInformation(); //Imprime la información
+        Task getTaskPosition(int); //Devuelve un objeto tipo Task en una posición específica
+        Event getEventPosition(int); //Devuelve un objeto tipo Event en una posición específica
 };
 
 //Constructores
 Agenda::Agenda(){}
-Agenda::Agenda(vector<Task> _task, vector<Event> _event){
-    task = _task;
-    event = _event;
-}
 Agenda::Agenda(vector<Task> _task){
     task = _task;
     vector<Event> emptyEvents;
