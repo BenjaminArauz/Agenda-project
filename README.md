@@ -36,3 +36,9 @@ Para poder correrlo en la terminal del sistema operativo de la mac se usan los s
 - Cambiar de dirección con: cd (Dirección de los archivos .cpp)
 - Compilar en Mac con: “g++ -o (nombre del ejecutable) main.cpp”
 - Correr: ./(nombre de ejecutable)
+
+## Casos de falla
+Se han detectado algunos casos en los que el proyecto no funcionaría de manera correcta.
+1.	Cuando se le pide al usuario ingresar datos numéricos, por falta de tiempo no se pudo evaluar cuando se ingresan variables numéricas en vez de datos numéricos, falla el programa.
+2.	Solo los valores de name (nombre), title (titulo) y location (locación) valen poner espacios y “-“, sin embargo, si se trata de poner espacios  y guiones con otros valores de string va a fallar el programa.
+3.	Todos los nombres dee usuario o ussername tienen que ser diferente, debido a que ese es el patrón de búsqueda, si se crea un tipo de persona con el mismo nombre de usuario, las acciones que el usuario solicite hacer se hará a la primera persona que se agregó.
