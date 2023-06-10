@@ -1,11 +1,16 @@
 /*
-La clase Teacher, representa a un tipo de la clase Persona, de la misma manera,
-que la clase de tipo Student, estamos representando herencia. Tiene tres atributos
-extras que le diferencian de los demás.
+*
+*
+* Agenda project
+* Benjamín Iván Arauz Córdova
+* 10/06/2023
+* La clase Teacher representa un tipo de la clase Person, lo que implica que se está utilizando herencia en el proyecto.
+* En este caso, la clase Teacher tiene tres atributos adicionales que la diferencian de la clase Persona y de la clase 
+* Student. 
 */
 
-//Incluimos el archivo .h
-#include "Teacher.h"
+#ifndef TEACHER_CPP
+#define TEACHER_CPP
 
 //Librerias necesarias para esta clase
 #include <iostream>
@@ -13,17 +18,43 @@ extras que le diferencian de los demás.
 #include <vector>
 using namespace std;
 
+//Clase que se va a incluir
+#include "Person.cpp"
+
+//Definición de la clase
+class Teacher : public Person { //Representamos herencia de Persona
+    private:
+        string subject;
+        string degree;
+        int yearsExperience;
+    public:
+        //Constructores
+        Teacher();
+        //Agregamos los atributos de la clase padre
+        //Declaramos sobreeescritura con los constructores
+        //Constructor con un vector tipo task
+        Teacher(string, string, string, string, string, vector<Task>, string, string, int);
+        //Constructor con un vector tipo event
+        Teacher(string, string, string, string, string, vector<Event>, string, string, int);
+        //Destructor
+        ~Teacher();
+        //Getters
+        string getSubject();
+        int getYearsExperience();
+        string getDegree();
+        //Setters
+        void setSubject(string);
+        void setYearsExperience(int);
+        void setDegree(string);
+        //Función sobreescrita de la clase Padre
+        string printInformationPerson() override;
+};
+
 //Constructores
 Teacher::Teacher(){
     subject = " ";
     degree = " ";
     yearsExperience = 0;
-}
-//Como es herencia, llamamos al constructor de la clase padre (Person)
-Teacher::Teacher(string _name, string _ID, string _email, string _username, string _phone, vector<Task> tasks, vector<Event> events, string _subject, string _degree, int _yearsExperience) : Person(_name, _ID, _email, _username, _phone, tasks, events){
-    subject = _subject;
-    degree = _degree;
-    yearsExperience = _yearsExperience;
 }
 Teacher::Teacher(string _name, string _ID, string _email, string _username, string _phone, vector<Task> tasks, string _subject, string _degree, int _yearsExperience) : Person(_name, _ID, _email, _username, _phone, tasks){
     subject = _subject;
@@ -73,3 +104,5 @@ string Teacher::printInformationPerson(){
     msg += agenda->printInformation();
     return msg;
 }
+
+#endif
