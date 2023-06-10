@@ -1,28 +1,60 @@
 /*
-La clase Estudiante, representa a un tipo de la clase Persona, por lo tanto, 
-estamos representando herencia. Tiene tres atributos extras que le diferencian 
-de los demás.
+*
+*
+* Agenda project
+* Benjamín Iván Arauz Córdova
+* 10/06/2023
+* Dentro de este proyecto se ha implementado la clase student, la cual representa a un tipo de la clase person
+* por lo que estamos representando herencia, tiene tres atributos extras que le diferencian de la clase person.
+* La clase student hereda todos los atributos y métodos de la clase person.
 */
 
-//Incluimos el archivo .h
-#include "Student.h"
+#ifndef STUDENT_CPP
+#define STUDENT_CPP
 
-//Librerias necesarias para esta clase
+//Clases que se van a incluir
 #include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
+
+//Clase que se va a incluir
+#include "Person.cpp"
+
+//Definición de las personas
+class Student : public Person { //Representamos herencia de Persona
+    private:
+        float grade; 
+        int semester;
+        string career;
+    public:
+        //Constructores
+        Student();
+        //Agregamos los atributos de la clase padre
+        //Declaramos sobreeescritura con los constructores
+        //Constructor con un vector de objetos tipo Task
+        Student(string, string, string, string, string, vector<Task>, float, int, string);
+        //Constructor con un vector de objetos tipo Event
+        Student(string, string, string, string, string, vector<Event>, float, int, string);
+        //Destructor
+        ~Student();
+        //Getters
+        float getGrade();
+        int getSemester();
+        string getCareer();
+        //Setters
+        void setGrade(float);
+        void setSemester(int);
+        void setCareer(string);
+        //Función sobreescrita de la clase Padre con override
+        string printInformationPerson() override;
+};
 
 //Constructores
 Student::Student(){
     grade = 0.0;
     semester = 0;
     career = " ";
-}
-Student::Student(string _name, string _ID, string _email, string _username, string _phone, vector<Task> tasks, vector<Event> events, float _grade, int _semester, string _career) : Person(_name, _ID, _email, _username, _phone, tasks, events){
-    grade = _grade;
-    semester = _semester;
-    career = _career;
 }
 Student::Student(string _name, string _ID, string _email, string _username, string _phone, vector<Task> tasks, float _grade, int _semester, string _career) : Person(_name, _ID, _email, _username, _phone, tasks){
     grade = _grade;
@@ -73,3 +105,6 @@ string Student::printInformationPerson(){
     msg += agenda->printInformation(); 
     return msg;
 }
+
+
+#endif
