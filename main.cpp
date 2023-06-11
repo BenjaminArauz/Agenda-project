@@ -134,7 +134,7 @@ void printInformationEvent(Person *person){
     if (person->getAgenda()->lenEvent() != 0){
         for (int i = 0; i < person->getAgenda()->lenEvent(); i++){
             cout << i + 1<< ". " << endl;
-            person->getAgenda()->getEventPosition(i).printInformationEvent();
+            cout << person->getAgenda()->getEventPosition(i).printInformationEvent();
         } 
     } else {
         cout << "No events agended" << endl;
@@ -229,7 +229,7 @@ void createPerson(vector<Person*> &persons){
 
 int main(){
     //Definimos todas las variables con las que va a interactuar el usuario
-    int option_menu = 10, option_begin = 10, option_task, option_event, option_delete_task, option_delete_event, option_clear_agenda, type_person, day, month, year, modify_event;
+    int option_menu = 10, option_begin = 10, option_task, option_event, option_delete_task, option_delete_event, option_clear_agenda, type_person, day, month, year;
     string username;
     bool verify = false;
     Date date;
@@ -283,16 +283,18 @@ int main(){
                                         task = createTask();
                                         //Llamamos a la función para agregar un objeto tipo Task
                                         person->getAgenda()->addTask(task); 
+                                        cout << "Task added successfully" << endl;
                                         break;
                                     case 2:
                                         //Imprimimos toda la información sobre Task
                                         if (person->getAgenda()->lenTask() != 0){
+                                            cout << "Choose the number you want to eliminate" << endl;
                                             printInformationTask(person);
                                             cout << "Number you want to eliminate: " ;
                                             //Pedimos al usuario la opción para poder eliminar
                                             cin >> option_delete_task;
                                             //Llamamos a la función de deleteTask para poder eliminarlo
-                                            if (option_delete_task > person->getAgenda()->lenTask()){
+                                            if (option_delete_task > person->getAgenda()->lenTask() | option_delete_task < 1){
                                                 cout << "Number incorrect" << endl;
                                             } else {
                                                 person->getAgenda()->deleteTask(option_delete_task);  
@@ -324,17 +326,19 @@ int main(){
                                         //Llamamos a la función de createEvent, previamente definida
                                         event = createEvent();
                                         //Llamamos a la función de agregar agenda
-                                        person->getAgenda()->addEvent(event);                                 
+                                        person->getAgenda()->addEvent(event); 
+                                        cout << "Event added successfully" << endl;                                
                                         break;
                                     case 2:
                                         //Imprimimos toda la información sobre Event
                                         if (person->getAgenda()->lenEvent() != 0){
+                                            cout << "Choose the number you want to eliminate" << endl;
                                             printInformationEvent(person);
                                             //Pedimos el número para eliminar
                                             cout << "Number you want to eliminate: " ;
                                             cin >> option_delete_event;
                                             //Llamamos a la función para eliminar el evento que el usuario seleccionó
-                                            if (option_delete_event > person->getAgenda()->lenEvent()){
+                                            if (option_delete_event > person->getAgenda()->lenEvent() | option_delete_event < 1){
                                                 cout << "Number incorrect" << endl;
                                             } else {
                                                 person->getAgenda()->deleteEvent(option_delete_event);
@@ -347,11 +351,6 @@ int main(){
                                     case 3:
                                         //Imprimimoss toda la información sobre Event
                                         printInformationEvent(person);
-                                        break;
-                                    case 4:
-                                        printInformationEvent(person);
-                                        cout << "Choose the one you want to modify: ";
-                                        cin >> modify_event;
                                         break;
                                     default:  
                                         //Se muestre número incorreccto si el número no esta en el rango
